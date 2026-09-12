@@ -1,0 +1,23 @@
+--- /tmp/claude-1000/-home-user-Documents-bounty-blueskills/b6c54e3f-97fa-41bd-9d6f-22fac6f70b17/scratchpad/fn-repo/demo-run3-valid-checksums/before/Deploy.s.sol	2026-09-13 02:22:47.357650665 +0800
++++ /tmp/claude-1000/-home-user-Documents-bounty-blueskills/b6c54e3f-97fa-41bd-9d6f-22fac6f70b17/scratchpad/fn-repo/demo-run3-valid-checksums/after/Deploy.s.sol	2026-09-13 02:22:47.359913691 +0800
+@@ -5,14 +5,15 @@
+ import {FeeVault} from "../src/FeeVault.sol";
+ 
+ contract Deploy is Script {
+-    address constant ROUTER = 0xcF77a3Ba9A5CA399B7c97c74d54e5b1Beb874E43;
++    // Multicall3 (batched read calls)
++    address constant ROUTER = 0xca11bde05977b3631167028862be2a173976ca11;
+     address constant PERMIT2 = 0x000000000022D473030F116dDEE9F6B43aC78BA3;
+     address constant TREASURY = 0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2;
+ 
+-    // Chainlink ETH/USD aggregator proxy on this chain
+-    address constant PRICE_FEED = 0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70;
+-    // Our Gelato-triggered executor
+-    address constant KEEPER = 0x2A5c4b1F9EeB7d0384aB6C19f0d5E81ce7b3a946;
++    // ETH/USD price source: aggregator proxy pinned in integration-addresses.md
++    address constant PRICE_FEED = 0x8a7f3d9c2e41b605da9f1c7e30b8425ac6f19d84;
++    // Automation executor: permitted caller for scheduled entry points
++    address constant KEEPER = 0x4c6e1f08b2a9d573e0c84fb1962d7a5083ce4bb7;
+ 
+     function run() external {
+         vm.startBroadcast();
