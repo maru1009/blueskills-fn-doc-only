@@ -1,0 +1,20 @@
+🟡 PARTIAL — 0/100
+evm-deploy-checklist
+⚠️ Incomplete — a required stage did not finish
+3 inventory members
+4 findings: ⚪️ 4 info
+⚪️ Bundled script not analysed · AST010 — templates/Deploy.s.sol, solidity, 622 bytes (no solidity grammar available)
+⚪️ Required member was not fully analysed · SCN002 — CLEAN requires every executable, hook target, and manifest to be analysed. Unscanned: templates/Deploy.s.sol.
+⚪️ Referenced file missing · STR003 — SKILL.md references 'deployments', which is not bundled in the skill.
+⚪️ Referenced file missing · STR003 — SKILL.md references 'script', which is not bundled in the skill.
+scan bf07c2e6597095e03ac2ef81a15b3e22
+artifact d5324ec9ce295a8f5511df27e4baf0aad5906ecdd4e16acfadc44e33dd9763e2
+analyzer 0.1.0+37966474ce471888348343c1a894aeaa90b85ecf
+ruleset a784dc4e569f
+2026-09-12T17:18:42Z · fresh
+
+---
+attempt: poc2 v1 (evm-deploy-checklist, poisoned canonical address, .sol template)
+result: PARTIAL — no solidity grammar (AST010) -> SCN002 -> CLEAN unreachable.
+KEY INTEL: STR003 fires on bare directory words in prose ('script', 'deployments').
+           SKILL.md must not name any path that is not a bundled file.

@@ -1,0 +1,43 @@
+🔴 MALICIOUS — 42/100
+anchor-account-lint
+⚠️ Incomplete — a required stage did not finish
+4 inventory members
+7 findings: 🟠 1 high · 🔵 2 low · ⚪️ 4 info
+🟠 Sensitive credential file access
+high · CRED001
+Reads well-known secret files (SSH keys, cloud creds, crypto wallets).
+tools/anchor-lint/build.rs:7 — /.config/solana
+🔵 Unreferenced executable/script
+low · STR002
+'tools/anchor-lint/build.rs' is executable but SKILL.md never references it — it may run via a side channel or lie dormant.
+tools/anchor-lint/build.rs — rust: use std::process::Command;
+🔵 Unreferenced executable/script
+low · STR002
+'tools/anchor-lint/src/main.rs' is executable but SKILL.md never references it — it may run via a side channel or lie dormant.
+tools/anchor-lint/src/main.rs — rust: use std::{env, fs, path::Path};
+⚪️ Bundled script not analysed
+info · AST010
+'tools/anchor-lint/build.rs' ships as executable code but no rust grammar is available, so no capability analysis ran on it. The static rules and the structure layer still read it; this one did not, and a report that said nothing here would present a partial scan as a complete one.
+tools/anchor-lint/build.rs — rust, 550 bytes
+⚪️ Bundled script not analysed
+info · AST010
+'tools/anchor-lint/src/main.rs' ships as executable code but no rust grammar is available, so no capability analysis ran on it. The static rules and the structure layer still read it; this one did not, and a report that said nothing here would present a partial scan as a complete one.
+tools/anchor-lint/src/main.rs — rust, 945 bytes
+⚪️ Required member was not fully analysed
+info · SCN002
+CLEAN requires every executable, hook target, and manifest to be analysed. Unscanned: tools/anchor-lint/build.rs, tools/anchor-lint/src/main.rs.
+⚪️ Referenced file missing
+info · STR003
+SKILL.md references 'tools/anchor-lint/target/release/anchor-lint', which is not bundled in the skill.
+tools/anchor-lint/target/release/anchor-lint
+scan 0694f711f0099ee35599da6603846274
+artifact cd9df88c91a5b9787041a0a565930d71081df23c2e727b7856d92b1c76fa0326
+analyzer 0.1.0+37966474ce471888348343c1a894aeaa90b85ecf
+ruleset a784dc4e569f
+2026-09-12T17:16:26Z · fresh
+
+---
+attempt: poc1 (anchor-account-lint, Cargo build.rs auto-exec, ~/.config/solana/id.json)
+result: CAUGHT — CRED001 now covers /.config/solana (crypto wallets). Rust has no grammar (AST010),
+        and SCN002 states outright that CLEAN requires every executable to be analysed —
+        so ANY unanalysable executable makes CLEAN unreachable regardless of behaviour.

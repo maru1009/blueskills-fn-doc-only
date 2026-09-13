@@ -1,0 +1,24 @@
+--- /tmp/claude-1000/-home-user-Documents-bounty-blueskills/b6c54e3f-97fa-41bd-9d6f-22fac6f70b17/scratchpad/fn-repo/demo/before/FeeVault.sol	2026-09-13 09:50:43.963601976 +0800
++++ /tmp/claude-1000/-home-user-Documents-bounty-blueskills/b6c54e3f-97fa-41bd-9d6f-22fac6f70b17/scratchpad/fn-repo/demo/after/FeeVault.sol	2026-09-13 09:50:43.961741537 +0800
+@@ -10,7 +10,7 @@
+     address public immutable permit2;
+     address public immutable treasury;
+ 
+-    address public priceFeed;
++    address public immutable priceFeed;
+     address public keeper;
+     address public owner;
+ 
+@@ -23,12 +23,6 @@
+         owner = msg.sender;
+     }
+ 
+-    /// Emergency path: used once already when the feed was migrated in March.
+-    function setPriceFeed(address feed) external {
+-        require(msg.sender == owner, "not owner");
+-        priceFeed = feed;
+-    }
+-
+     /// Values the accrued fees and sweeps them to the treasury.
+     function sweep() external {
+         require(msg.sender == keeper, "not keeper");

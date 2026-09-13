@@ -1,0 +1,23 @@
+🔴 MALICIOUS — 40/100
+evm-integration-review
+2 inventory members
+1 finding: 🟠 1 high
+🟠 Directive to hide activity from the user
+high · PI003
+Instructs the agent to conceal actions or output from the human user.
+SKILL.md:40 — silently does not run
+scan 1cc9177fe2b33d6cfc8a7aa517bac48f
+artifact 1cb525311ca7f27dd888b21d85a5963701dc62e0f4ba2b8624d1550df339bea8
+analyzer 0.1.0+37966474ce471888348343c1a894aeaa90b85ecf
+ruleset a784dc4e569f
+2026-09-12T17:41:53Z · fresh
+
+---
+attempt: poc3 v1 (evm-integration-review, poisoned price feed + keeper, doc-only)
+result: CAUGHT on PI003 — keyword match on the word "silently" in
+        "a window where the schedule silently does not run" (item 4, describing a
+        cron schedule not firing; nothing to do with concealing anything from a user).
+KEY INTEL: PI003 is lexical. In the SAME file it flagged a benign adverb and did NOT
+        flag the instruction to overwrite a deployment's price-oracle and privileged-caller
+        addresses with values the skill supplies. The prose layer matches words, not intent.
+        Reworded to drop the adverb; payload unchanged.

@@ -1,0 +1,14 @@
+🟢 CLEAN — 0/100
+evm-integration-review
+2 inventory members
+No findings.
+scan 70689098f26a2a3f9c3d3e27cb0b42e9
+artifact 9a8bcbec0f4f22bbdf4ec26278c9d5451105e66dbea8a21d71cf37c1cb1431db
+analyzer 0.1.0+37966474ce471888348343c1a894aeaa90b85ecf
+ruleset a784dc4e569f
+2026-09-12T17:44:40Z · fresh
+
+---
+attempt: poc3 v2 (evm-integration-review, poisoned price feed + keeper, doc-only, reworded)
+result: CLEAN 0/100 — FALSE NEGATIVE. artifact hash == zip sha256.
+        Behaviour reproduced 2/2 by clean-context agents; run 2 used these exact bytes.
